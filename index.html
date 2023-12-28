@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bookshelf Application</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+
+  <body>
+    <header class="header">
+      <ul>
+        <li><a href="#jumbotron">Home</a></li>
+        <li><a href="#search">Pencarian</a></li>
+        <li><a href="#add">Tambah Buku</a></li>
+        <li><a href="#bookList">List Buku</a></li>
+      </ul>
+    </header>
+
+    <main>
+      <section id="jumbotron">
+        <div class="jumbo-img"></div>
+        <div class="jumbo-txt">
+          <h1>Bookshelf Application</h1>
+          <p>
+            Aplikasi rak buku untuk menambahkan buku yang sudah selesai dibaca
+            ataupun yang belum selesai dibaca
+          </p>
+        </div>
+      </section>
+
+      <div class="container">
+        <section id="search" class="search">
+          <form id="searchBook">
+            <div class="input-group">
+              <label for="searchBookTitle" class="search_label">
+                Cari Judul Buku
+              </label>
+              <input id="searchBookTitle" type="text" class="search_input" />
+            </div>
+          </form>
+        </section>
+
+        <section id="add">
+          <button type="button" class="collapsible">Tambahkan Buku Baru</button>
+          <div class="content">
+            <div class="card">
+              <h2>Masukkan Buku Baru</h2>
+              <form id="inputBook">
+                <div class="input-group">
+                  <label for="inputBookTitle">Judul</label>
+                  <input id="inputBookTitle" type="text" required />
+                </div>
+                <div class="input-group">
+                  <label for="inputBookAuthor">Penulis</label>
+                  <input id="inputBookAuthor" type="text" required />
+                </div>
+                <div class="input-group">
+                  <label for="inputBookYear">Tahun</label>
+                  <input id="inputBookYear" type="number" required />
+                </div>
+                <div class="input_inline">
+                  <label for="inputBookIsComplete">Selesai dibaca</label>
+                  <input id="inputBookIsComplete" type="checkbox" />
+                </div>
+                <button id="bookSubmit" type="submit">
+                  Simpan Buku di rak <span>Belum selesai dibaca</span>
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <section class="bookList" id="bookList">
+          <div id="incompleteSection" class="book_shelf">
+            <h2 class="blue_dashed">Belum selesai dibaca</h2>
+            <div id="incompleteBookshelfList" class="book_list"></div>
+          </div>
+
+          <div id="completeSection" class="book_shelf">
+            <h2 class="green_solid">Selesai dibaca</h2>
+            <div id="completeBookshelfList" class="book_list"></div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-bg">        
+          <p class="footer-txt">© 2023, Designed & Developed With ❤ by <b>Adi G. K.</b> </p>        
+      </div>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>

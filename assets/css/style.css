@@ -1,0 +1,377 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  --color-scheme-head: rgba(95, 82, 207, 0.589);
+  --color-scheme: rgb(95, 82, 207);
+  font-family: 'Roboto', sans-serif;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-scheme-head);
+  color: white;
+  text-shadow: 0 0 2px var(--color-scheme);
+
+  -webkit-backdrop-filter: blur(9px);
+  backdrop-filter: blur(9px);
+  z-index: 99;
+}
+
+.header>ul {
+  list-style-type: none;
+}
+
+.header li {
+  display: inline;
+  font-size: x-large;
+  margin: 10px  ;
+}
+.header a {
+  color: white ;
+  text-decoration: none;
+}
+
+.jumbo-img {
+  width: 100%;
+  min-height: 450px;
+  background-image: url(../img/cover.jpg);
+  filter: brightness(36%);
+  background-attachment: fixed;
+}
+
+.jumbo-txt {
+  color: white;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  width: 80%;
+  padding: 20px;
+  text-align: center;
+}
+
+.jumbo-txt>h1 {
+  font-size: 2em;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.jumbo-txt>p {
+  font-size: 1.25em;
+}
+
+.container {
+  max-width: 60vw;
+  margin: 0 auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  z-index: 1;
+}
+
+.bookList {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 25px 32px 32px;
+  margin: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.223);
+  border-radius: 10px;
+  box-shadow: 0 0 12px rgba(63, 62, 62, 0.513);
+}
+
+.card>h2 {
+  text-align: center;
+  color: var(--color-scheme);
+}
+
+.input-group {
+  margin: 8px 0;
+}
+
+.input-group>input,
+.card>form>input {
+  outline: 0;
+  display: block;
+  width: 100%;
+  padding: 8px;
+  margin-top: 10px;
+  margin-block-end: 10px;
+  border-radius: 0.375rem;
+  border: 1px solid #5042bd91;
+}
+
+.input-group>input:hover,
+.card>form>input:hover,
+.input-group>input:active,
+.card>form>input:active,
+.input-group>input:focus,
+.card>form>input:focus {
+  border: 1px solid #5042bd91;
+  box-shadow: 0 0 0px 3px #5042bd4f;
+}
+
+.input-group>label {
+  color: var(--color-scheme);
+  font-weight: bold;
+}
+
+button {
+  background-color: var(--color-scheme);
+  color: white;
+  border: 0;
+  border-radius: 0.375rem;
+  display: block;
+  width: 100%;
+  padding: 8px;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+button:hover {
+  filter: brightness(80%);
+}
+
+button>span {
+  font-weight: 700;
+}
+
+.input_inline {
+  margin: 20px 0 10px;
+  display: flex;
+  color: var(--color-scheme);
+}
+
+.input_inline>label {
+  color: var(--color-scheme);
+  font-weight: 700;
+  margin-right: 10px;
+}
+
+
+.input_inline input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  margin: 0;
+  font: inherit;
+  color: currentColor;
+  width: 1lh;
+  height: 1lh;
+  border: 0.12em solid currentColor;
+  border-radius: 0.15em;
+  transform: translateY(-0.075em);
+  display: grid;
+  place-content: center;
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: .6lh;
+  height: .6lh;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em var(--color-scheme);
+  background-color: CanvasText;
+  transform-origin: bottom left;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+
+}
+
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+
+input[type="checkbox"]:focus {
+  outline: max(2px, 0.15em) solid currentColor;
+  outline-offset: max(2px, 0.15em);
+}
+
+.search {
+  margin: 16px 0;
+  display: grid;
+  justify-content: center;
+}
+
+
+.search_label {
+  font-size: x-large;
+}
+
+.search_input {
+  width: 55vw !important;
+}
+
+
+.book_shelf {
+  margin: 16px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  width: 48%;
+}
+
+.book_shelf>h2 {
+  text-align: center;
+  padding-bottom: 5px;
+}
+
+.blue_dashed{
+  color: rgb(36, 31, 128);
+  border-bottom: 2px dashed;
+}
+
+.green_solid{
+  color: rgb(20, 125, 71);
+  border-bottom: 2px solid;
+}
+
+.book_list {
+  padding: 16px 2px;
+}
+
+.book_item {
+  padding: 16px;
+  box-shadow: 1px 10px 20px var(--color-scheme-head);
+  border-radius: 14px;
+  margin: 10px 0;
+}
+
+.book_item>h3,
+p {
+  margin: 8px 0;
+}
+
+.action>button {
+  margin:5px;
+}
+
+.green {
+  background-color: rgb(20, 125, 71);
+  color: white;
+}
+
+.red {
+  background-color: rgb(138, 5, 5);
+  color: white;
+}
+
+.blue {
+  background-color: rgb(36, 31, 128);
+  color: white;
+}
+
+
+footer{
+  background-image: url(../img/cover.jpg);
+  background-attachment: fixed;  
+}
+
+.footer-bg{  
+  -webkit-backdrop-filter: brightness(26%);
+  backdrop-filter: brightness(26%);
+  width: 100%;
+  min-height: 250px;
+}
+
+.footer-txt{
+  color: gainsboro;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;  
+}
+
+.collapsible {
+  background-color: var(--color-scheme);  
+  width: 100%;
+  font-size: x-large;
+}
+
+.active,
+.collapsible:hover {
+  background-color: rgb(51, 89, 159);
+}
+
+.collapsible:after {
+  content: '\002B';
+  color: white;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2212";
+}
+
+.content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+
+.gui-toast-group {
+  position: fixed;
+  z-index: 1;
+  inset-block-end: 0;
+  inset-inline: 0;
+  padding-block-end: 5vh;
+  display: grid;
+  justify-items: center;
+  justify-content: center;
+  gap: 1vh;
+  pointer-events: none;
+}
+
+.gui-toast {
+  max-inline-size: min(80ch, 95vw);
+  padding-block: .5ch;
+  padding-inline: 1ch;
+  border-radius: 0.375rem;
+  font-size: 1.1rem;
+  --_bg-lightness: 46.56%;
+  --_duration: 3s;
+  --_travel-distance: 0;
+
+  color: #fff;
+  background-color: hsl(243deg 83.38% var(--_bg-lightness) / 70%);
+
+  will-change: transform;
+  animation:
+    fade-in .3s ease,
+    slide-in .3s ease,
+    fade-out .3s ease var(--_duration);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0
+  }
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0
+  }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateY(var(--_travel-distance, 10px))
+  }
+}
