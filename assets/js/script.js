@@ -2,6 +2,30 @@
 const books = [];
 const RENDER_BOOK = "render-book";
 
+const DUMMY_BOOKS = [
+  {
+    id: 123456789,
+    title: 'The Has Slinging Slasher',
+    author: 'Mike O Wen',
+    year: 1997,
+    isComplete: false
+  },
+  {
+    id: 123456781,
+    title: 'The Lighting Thief',
+    author: 'Percy Jackson',
+    year: 2003,
+    isComplete: true
+  },
+  {
+    id: 123456782,
+    title: 'Full Dive into Virtual Reality Gaming',
+    author: 'Kayaba',
+    year: 2024,
+    isComplete: false
+  },
+]
+
 function isStorageExist() {
   if (typeof Storage === undefined) {
     alert("Browser kamu tidak mendukung local storage!");
@@ -87,16 +111,16 @@ function makeBooks(booksObject) {
       const undoButton = document.createElement("button");
       undoButton.name = bookItem.title;
       undoButton.id = bookItem.id;
-      undoButton.innerText = "Belum Selesai dibaca";
+      undoButton.innerHTML = '<span class="iconify" data-icon="lets-icons:book-fill"></span> Belum dibaca';
       undoButton.classList.add("blue");
       undoButton.addEventListener("click", undoBookFromCompleted);
 
       const trashButton = document.createElement("button");
       trashButton.name = bookItem.title;
       trashButton.id = bookItem.id;
-      trashButton.innerText = "Hapus buku";
+      trashButton.innerHTML = '<span class="iconify" data-icon="basil:trash-solid"></span> Hapus buku';
       trashButton.classList.add("red");
-      trashButton.addEventListener("click", removeBook),
+      trashButton.addEventListener("click", Dialog),
 
       bookAction.appendChild(undoButton),
       bookAction.appendChild(trashButton),
@@ -106,16 +130,16 @@ function makeBooks(booksObject) {
       const finishButton = document.createElement("button");
       finishButton.id = bookItem.id;
       finishButton.name = bookItem.title;
-      finishButton.innerText = "Selesai dibaca";
+      finishButton.innerHTML = '<span class="iconify" data-icon="lets-icons:book-check-fill"></span> Selesai dibaca';
       finishButton.classList.add("green");
       finishButton.addEventListener("click", addBookToCompleted);
 
       const removeBooks = document.createElement("button");
       removeBooks.id = bookItem.id;
       removeBooks.name = bookItem.title;
-      removeBooks.innerText = "Hapus buku";
+      removeBooks.innerHTML = '<span class="iconify" data-icon="basil:trash-solid"></span> Hapus buku';
       removeBooks.classList.add("red");
-      removeBooks.addEventListener("click", removeBook);
+      removeBooks.addEventListener("click", Dialog);
 
       bookAction.appendChild(finishButton),
         bookAction.appendChild(removeBooks),
@@ -150,17 +174,61 @@ function undoBookFromCompleted(data) {
   Toast(`Buku ${data.target.name} diset belum selesai dibaca`)
 }
 
-function removeBook(data) {
-  const isDelete = window.confirm(
-    `Apakah kamu mau menghapus buku ${data.target.name}?`
-  );
-  if (isDelete) {
+function Dialog(data) {
+  let isConfirm = false
+  
+  const dialog = document.querySelector("dialog");  
+
+  const textDialog = document.createElement('p')
+  textDialog.innerHTML = `Yakin Mau Hapus <b > ${data.target.name} </b> ?`;
+  
+  const divAction = document.createElement('div')
+  divAction.className = 'action'
+
+  const closeDialog = document.createElement('button');
+  closeDialog.innerText = 'Cancel'
+
+  const confirmDialog = document.createElement('button');
+  confirmDialog.setAttribute('autofocus','')
+  confirmDialog.innerText = 'Confirm'
+  confirmDialog.classList.add('red')
+
+  divAction.append(closeDialog, confirmDialog)
+  
+  dialog.innerHTML = ''
+  dialog.append(textDialog,divAction)
+   
+  
+  dialog.showModal()
+
+  confirmDialog.addEventListener("click", () => {  
+    isConfirm = true
+    dialog.close(isConfirm)
+    removeBook(data)
+  });
+  
+  // dialog.addEventListener("close", function () {
+  //   console.log('ini return : '+dialog.returnValue)
+  //   // isConfirm = Dialog.returnValue
+  // })
+
+  closeDialog.addEventListener("click", () => {
+    dialog.close();
+    console.log('close');    
+});
+
+}
+
+function removeBook(data) {  
+  // Dialog(data)
+  
+  console.log(`ini removebook ${data.target.id}`);
     const bookTarget = findBookIndex(Number(data.target.id));    
     if (bookTarget === -1) return;
     books.splice(bookTarget, 1);
     Toast(`buku ${data.target.name} telah dihapus`)
     document.dispatchEvent(new Event(RENDER_BOOK));
-  }
+  
 }
 
 function addBookToCompleted(data) {
@@ -180,25 +248,38 @@ function bookHandler() {
 }
 
 function updateText() {
-  const span = document.querySelector("span");
+  const span = document.querySelector("span");  
     if (inputBookIsComplete.checked) {
-        span.innerText = "Selesai dibaca";
+        span.innerText = "selesai dibaca";
     } else {
-        span.innerText = "Belum selesai dibaca";
+        span.innerText = "belum selesai dibaca";
     }
 }
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {  
   const submitBook = document.getElementById("inputBook");
   const inputSearchBook = document.getElementById("searchBookTitle")
   const inputBookIsComplete = document.getElementById("inputBookIsComplete");
 
   const data = JSON.parse(localStorage.getItem("books")) || [];
-  if (data !== null) {
+  console.log(data);
+  console.log(data.length !== 0);
+  const data_dummy = DUMMY_BOOKS  
+
+  if (data.length !== 0) {
     for (const buku of data) {
       books.push(buku);
     }
+  }else{
+    const isUsingDummy = window.confirm('Apakah kamu mau menggunakan data Dummy?')
+    if (isUsingDummy) {
+      for (const dumBuku of data_dummy) {
+        books.push(dumBuku)
+      }      
+      localStorage.setItem("books", JSON.stringify(books));
+    }
   }
-  makeBooks(data);
+  console.log(books);
+  makeBooks(books);
 
   submitBook.addEventListener("submit", addBook);
   inputBookIsComplete.addEventListener("input", updateText)  
@@ -206,6 +287,7 @@ document.addEventListener("DOMContentLoaded", function () {
   document.addEventListener(RENDER_BOOK, bookHandler);
 
 });
+
 
 const coll = document.getElementsByClassName("collapsible");
 let i;

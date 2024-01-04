@@ -6,9 +6,76 @@
   --color-scheme: rgb(95, 82, 207);
   font-family: 'Roboto', sans-serif;
 }
+dialog::backdrop {
+  background-color: rgb(0 0 0 / 0);
+  transition:
+    display 0.5s allow-discrete,
+    overlay 0.5s allow-discrete,
+    background-color 0.5s,
+    filter 0.7s,
+    opacity 1s;
+  /* Equivalent to
+  transition: all 0.7s allow-discrete; */
+} 
+dialog[open]::backdrop {
+  background-image: linear-gradient(
+    220deg,
+    magenta,
+    rebeccapurple,
+    dodgerblue,
+    green
+  );
+  opacity: 0.75;
+  filter: brightness(0.5);
+}
+/* This starting-style rule cannot be nested inside the above selector
+because the nesting selector cannot represent pseudo-elements. */
+
+@starting-style {
+dialog[open]::backdrop {
+background-color: rgb(0 0 0 / 0);
+}
+}
+
+dialog[open] {
+  opacity: 1;
+  transform: translate(-50%, 20%);
+
+}
+/*   Before-open state  */
+/* Needs to be after the previous dialog[open] rule to take effect,
+    as the specificity is the same */
+    @starting-style {
+      dialog[open] {
+        opacity: 0;
+        transform: translate(-50%, 50%);
+      }
+    }
+
+dialog{
+  z-index: 999;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, 50%);
+  padding: 10px 16px;
+  min-width: 20vw;
+  text-align: center;
+  border: 1px solid var(--color-scheme);
+  border-radius: 0.735rem;
+  box-shadow: 0 0 30px #c1c1c154;
+  opacity: 0;
+  /* transform: scaleY(0); */
+  transition:
+    opacity 0.2s ease-out,
+    transform 0.2s ease-out,
+    overlay 0.2s ease-out allow-discrete,
+    display 0.2s ease-out allow-discrete;
+
+}
 
 .header {
-  position: sticky;
+  position: static;
   top: 0;
   padding: 12px;
   display: flex;
@@ -37,9 +104,12 @@
   text-decoration: none;
 }
 
+#jumbotron{
+  position: relative;
+}
 .jumbo-img {
   width: 100%;
-  min-height: 450px;
+  min-height: 350px;
   background-image: url(../img/cover.jpg);
   filter: brightness(36%);
   background-attachment: fixed;
@@ -48,7 +118,7 @@
 .jumbo-txt {
   color: white;
   position: absolute;
-  top: 25%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
@@ -137,7 +207,7 @@ button {
   width: 100%;
   padding: 8px;
   cursor: pointer;
-  font-size: 1.1rem;
+  font-size: 1.01rem;
 }
 
 button:hover {
@@ -145,7 +215,9 @@ button:hover {
 }
 
 button>span {
-  font-weight: 700;
+  font-weight: 500;
+  text-decoration: underline;
+  
 }
 
 .input_inline {
@@ -208,6 +280,7 @@ input[type="checkbox"]:focus {
 
 .search_label {
   font-size: x-large;
+  display: flex;
 }
 
 .search_input {
@@ -253,8 +326,15 @@ p {
   margin: 8px 0;
 }
 
+.action{
+  display: flex;
+}
+
 .action>button {
   margin:5px;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
 }
 
 .green {
@@ -293,6 +373,22 @@ footer{
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;  
+}
+.footer-txt a {
+  color: #000;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 1px 10px;  
+  background-color: white;
+  border-radius: 0.475rem;  
+}
+.footer-txt a:hover {
+  color: #fff;
+  background-color: var(--color-scheme-head);
+}
+.footer-txt a:visited{
+  color: #000;
+  background-color: #00baff;
 }
 
 .collapsible {

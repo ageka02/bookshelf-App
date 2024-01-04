@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bookshelf Application</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto"
+    />
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
 
@@ -35,8 +38,21 @@
           <form id="searchBook">
             <div class="input-group">
               <label for="searchBookTitle" class="search_label">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="29"
+                  height="29"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M11.724 7.447a2.276 2.276 0 1 0 0 4.553a2.276 2.276 0 0 0 0-4.553M4 4.5A2.5 2.5 0 0 1 6.5 2H18a2.5 2.5 0 0 1 2.5 2.5v14.25a.75.75 0 0 1-.75.75H5.5a1 1 0 0 0 1 1h13.25a.75.75 0 0 1 0 1.5H6.5A2.5 2.5 0 0 1 4 19.5zm10.819 7.295a3.724 3.724 0 1 0-1.024 1.024l2.476 2.475l.067.058l.008.006a.724.724 0 0 0 .942-1.093z"
+                  />
+                </svg>
+
                 Cari Judul Buku
               </label>
+
               <input id="searchBookTitle" type="text" class="search_input" />
             </div>
           </form>
@@ -65,7 +81,7 @@
                   <input id="inputBookIsComplete" type="checkbox" />
                 </div>
                 <button id="bookSubmit" type="submit">
-                  Simpan Buku di rak <span>Belum selesai dibaca</span>
+                  Simpan buku di rak <span>belum selesai dibaca</span>
                 </button>
               </form>
             </div>
@@ -86,12 +102,17 @@
       </div>
     </main>
 
+    <dialog></dialog>
+
     <footer>
-      <div class="footer-bg">        
-          <p class="footer-txt">© 2023, Designed & Developed With ❤ by <b>Adi G. K.</b> </p>        
+      <div class="footer-bg">
+        <p class="footer-txt">
+          © 2023, Designed & Developed With ❤ by <a href="https://github.com/ageka02" target="_blank" rel="noopener">Adi G. K.</a>
+        </p>
       </div>
     </footer>
-
+    
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
     <script src="assets/js/script.js"></script>
   </body>
 </html>
