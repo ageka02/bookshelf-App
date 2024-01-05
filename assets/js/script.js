@@ -214,21 +214,16 @@ function Dialog(data) {
 
   closeDialog.addEventListener("click", () => {
     dialog.close();
-    console.log('close');    
 });
 
 }
 
-function removeBook(data) {  
-  // Dialog(data)
-  
-  console.log(`ini removebook ${data.target.id}`);
+function removeBook(data) {
     const bookTarget = findBookIndex(Number(data.target.id));    
     if (bookTarget === -1) return;
     books.splice(bookTarget, 1);
     Toast(`buku ${data.target.name} telah dihapus`)
     document.dispatchEvent(new Event(RENDER_BOOK));
-  
 }
 
 function addBookToCompleted(data) {
@@ -261,8 +256,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const inputBookIsComplete = document.getElementById("inputBookIsComplete");
 
   const data = JSON.parse(localStorage.getItem("books")) || [];
-  console.log(data);
-  console.log(data.length !== 0);
+  
+  // console.log(data.length !== 0);
   const data_dummy = DUMMY_BOOKS  
 
   if (data.length !== 0) {
@@ -278,7 +273,7 @@ document.addEventListener("DOMContentLoaded", function () {
       localStorage.setItem("books", JSON.stringify(books));
     }
   }
-  console.log(books);
+  // console.log(books);
   makeBooks(books);
 
   submitBook.addEventListener("submit", addBook);
